@@ -157,8 +157,6 @@ a {
 
 
 
-
-
 #header {
   position: fixed;
   top: 0;
@@ -234,8 +232,7 @@ a {
 
   &.animating-out {
     opacity: 0;
-
-      }
+  }
 }
 .outline {
   width: 100%;
@@ -270,19 +267,15 @@ a {
     right: 0;
     position: absolute;
     z-index: -1;
-    transition: opacity .2s linear;
+    transition: opacity .3s linear;
+    animation: animate-hide .5s 1s ease forwards;
   }
   &.active {
     &:after {
-      opacity: 1;
-    }
-  }
-  &.animating-out {
-    &:after {
-      opacity: 0;
+      animation: animate-show .5s 1s ease forwards;
     }
   }
 }
 
 
-.hide-if-submitted {display: none;}
+.show-if-submitted {display: none;}

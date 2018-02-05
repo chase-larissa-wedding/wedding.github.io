@@ -1,0 +1,40 @@
+<html><head><title>RSVP - Chase &amp; Larissa&#39;s Wedding</title><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Home page description!"><link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png"><link rel="manifest" href="/manifest.json"><link rel="stylesheet" href="/css/global.css"><link rel="stylesheet" type="text/css" href="/css/libs/fullPage.css"><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script><script src="/js/libs/jquery.fullPage.js"></script></head><body><header id="header" class=""><ul id="navigation"><li data-menuanchor="home" class="active"><a class="navigation__link" href="#home">Home</a></li><li data-menuanchor="rsvp"><a class="navigation__link" href="#rsvp">RSVP</a></li><li data-menuanchor="schedule"><a class="navigation__link" href="#schedule">Schedule</a></li><li data-menuanchor="about"><a class="navigation__link" href="#about">About Nova Scotia</a></li><li data-menuanchor="hotels"><a class="navigation__link" href="#hotels">hotels</a></li></ul></header><div id="content"><div id="fullpage"><div class="section" data-anchor="home"><div class="stage t-center"><div class="outline"><div class="mb2"><h1 class="title">Larissa Alexandria</h1><p class="text">and</p><h1 class="title">Chase <span class="xs-hide">Armando</span> Pietrantonio</h1></div><div class="mb2"><p class="text text--first">request the pleasure of your<br>company at their marriage</p></div><img class="floral" src="images/floral-image.jpg" srcset="images/floral-image.jpg, images/floral-image@2x.jpg 2x"></div></div></div><div class="section" data-anchor="rsvp"><div class="stage t-center"><div class="outline"><div class="mb2"><h2 class="text">R.S.V.P.</h2></div><div class="mx-auto mxw-40"><p class="text text--first hide-if-submitted">Please use the form below to confirm your RSVP status;</p><p class="text text--first show-if-submitted">Thank you for submitting the form! Have a great day. <a href="" id="reset-form">Send another?</a></p></div><div class="mt3 mb1 mx-auto mxw-20 hide-if-submitted"><form id="contact" action="https://formspree.io/chase.larissa.wedding@gmail.com" method="POST"><div class="mb2"><input type="text" name="first last name" class="input mb1" placeholder="First & Last Name(s)" required> <input type="email" name="email" class="input mb1" placeholder="Email Address" required><textarea name="notes" class="input" placeholder="Notes / Other guests"></textarea></div><p class="text mb1">Will you be attending?</p><div class="clearfix mb2 px3"><div class="col col-6"><label for="yes">Yes <input id="yes" class="ml1" type="radio" name="attending" value="yes" checked="checked" required></label></div><div class="col col-6"><label for="no">No <input id="no" class="ml1" type="radio" name="attending" value="no"></label></div></div><div class="mb2"><input type="submit" class="btn col-12" value="Send" required></div></form></div></div></div></div><div class="section" data-anchor="schedule"><div class="stage t-center"><div class="outline"><div class="mb2"><h2 class="text text--first">SCHEDULE</h2></div><div class="mb3 mx-auto mxw-40"><p class="text text--first">Saturday, the eleventh of August<br>two thousand and eighteen<br>at four o’clock<br>340A Purcells Cove Road<br>Halifax, Nova Scotia</p></div><div class="mb3 mx-auto mxw-30"><p class="text"><a class="btn col-12" href="/chase-and-larissa-wedding.ics">Add Calendar Event (.ics)</a></p></div><img class="floral" src="images/floral-image.jpg" srcset="images/floral-image.jpg, images/floral-image@2x.jpg 2x"></div></div></div><div class="section section--about" data-anchor="about"><div class="stage t-center"><div class="outline"><div class="mb2"><h2 class="text text--first">About Nove scotia</h2></div><div class="mb3 mx-auto mxw-40"><p class="text text--first">Located in eastern Canada and<br>almost completely surrounded by ocean,<br>the province of Nova Scotia is a place<br>where you can feel your pace fall<br>in sync with the rhythm of the sea.</p></div><div class="mb3 mx-auto mxw-40"><p class="text text--first">fun fact: Larissa and Chase met and fell in love<br>in Wolfville, Nova Scotia. <span class="red">❤</span></p></div><img class="floral" src="images/floral-image.jpg" srcset="images/floral-image.jpg, images/floral-image@2x.jpg 2x"></div></div></div><div class="section" data-anchor="hotels"><div class="stage t-center"><div class="outline"><div class="mb2"><h2 class="text text--first">Hotels</h2></div><div class="mb3 mx-auto mxw-40"><p class="text text--first">This section is coming soon!</p></div><img class="floral" src="images/floral-image.jpg" srcset="images/floral-image.jpg, images/floral-image@2x.jpg 2x"></div><div class="t-center mt3"><p class="text">that's all for now, have a great day :)</p></div></div></div></div></div><script type="text/javascript">$('#contact').submit(function(e) {
+        localStorage.setItem('rsvp-sent', true)
+      });
+
+      $('#reset-form').click(function(e) {
+        e.preventDefault();
+        localStorage.removeItem('rsvp-sent');
+        $('.hide-if-submitted').show();
+        $('.show-if-submitted').hide();
+      });
+
+      var animationUtil = function (index) {
+        console.log(index);
+        $($('.section')[index]).addClass('animating-out');
+
+        setTimeout(function () {
+          $($('.section')[index]).removeClass('animating-out');
+        }, 500);
+      }
+
+      $(document).ready(function() {
+        if (localStorage.getItem('rsvp-sent')) {
+          $('.hide-if-submitted').hide();
+          $('.show-if-submitted').show();
+        }
+
+        $('#fullpage').fullpage({
+          menu: true,
+          menu: '#navigation',
+          anchors: ['home', 'rsvp', 'schedule', 'about', 'hotels'],
+          verticalCentered: false,
+          slideIndex: 0,
+          scrollingSpeed: 900,
+          onLeave: function(index, nextIndex, direction){
+            animationUtil(index - 1)
+          }
+        });
+      });</script><noscript><style>*, * {
+          opacity: 1;
+        }</style></noscript></body></html>

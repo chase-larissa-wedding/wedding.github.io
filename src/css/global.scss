@@ -1,0 +1,288 @@
+// Breakpoints
+$breakpoint-xs:     '(max-width: 47.99em)' !default;
+$breakpoint-sm:     '(min-width: 48.00em)' !default;
+$breakpoint-sm-md:  '(min-width: 48.00em) and (max-width: 64.00em)' !default;
+$breakpoint-md:     '(min-width: 64.00em)' !default;
+$breakpoint-md-lg:  '(min-width: 64.00em) and (max-width: 80.000em)' !default;
+$breakpoint-lg:     '(min-width: 80.000em)' !default;
+$breakpoint-xl:     '(min-width: 120em)' !default;
+
+// Colors
+$aqua:      #7fdbff !default;
+$blue:      #0074d9 !default;
+$navy:      #001f3f !default;
+$teal:      #39cccc !default;
+$green:     #2ecc40 !default;
+$olive:     #3d9970 !default;
+$lime:      #01ff70 !default;
+$yellow:    #ffdc00 !default;
+$orange:    #e9b000 !default;
+$red:       #ff4136 !default;
+$fuchsia:   #f012be !default;
+$purple:    #b10dc9 !default;
+$maroon:    #85144b !default;
+$white:     #fff !default;
+$offwhite:  #f5f5f5 !default;
+$silver:    #ddd !default;
+$darkgray:  #2A2A2A !default;
+$gray:      #888 !default;
+$black:     #2b2b2b !default;
+
+
+@import "./libs/reset";
+@import "./libs/functions";
+
+// Typography and Text Control
+@import "./libs/restcss/typography";
+@import "./libs/restcss/font-sizes";
+
+// Layout and Grid Systems
+@import "./libs/restcss/widths";
+@import "./libs/restcss/grid";
+@import "./libs/restcss/layout";
+@import "./libs/restcss/flexbox";
+@import "./libs/restcss/position";
+@import "./libs/restcss/margins";
+@import "./libs/restcss/margins-responsive";
+@import "./libs/restcss/paddings";
+@import "./libs/restcss/paddings-responsive";
+
+// Aesthetics
+@import "./libs/restcss/backgrounds";
+@import "./libs/restcss/colors";
+@import "./libs/restcss/border";
+@import "./libs/restcss/border-colors";
+@import "./libs/restcss/visibility";
+@import "./libs/restcss/opacity";
+
+// Components
+@import "./libs/restcss/forms";
+@import "./libs/restcss/btn";
+
+// Custom Fonts
+@import "./libs/fonts";
+
+
+$grey: #dbdbd6;
+$pink: #f8e5df;
+
+.red {
+  color: #F44336;
+}
+
+
+body {
+  font-family: 'minion-pro-Regular', 'helvetica', serif;
+  background: #fff;
+  color: darken(#afb2aa, 10);
+  width: 100%;
+}
+h1,h2,h3,h4,h5,h6 {
+  font-weight: 400;
+  line-height: 1.5em;
+}
+p {
+  font-weight: 300;
+  font-size: 0.9rem;
+  line-height: 1.55em;
+  letter-spacing: 0.4px;
+}
+a {
+  color: inherit;
+  &:active {
+    color: inherit;
+  }
+}
+
+
+.title {
+  color: darken(#afb2aa, 20);
+  font-family: 'bh-script-regular', cursive;
+}
+.text {
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  line-height: 1.7rem;
+}
+
+.text--first {
+  &:first-letter {
+    font-size: 140%;
+  }
+}
+
+
+.input {
+  border: 0px solid transparent;
+  border-bottom: 1px solid $gray;
+  max-height: 200px;
+  max-width: 100%;
+  min-height: 2.5rem;
+  min-width: 100%;
+  width: 100%;
+
+  @include placeholder {
+		color: #ccc;
+	}
+}
+
+
+.btn {
+  line-height: 2rem;
+  text-decoration: none;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+  background: $pink;
+  border: 3px solid #fff;
+  color: $gray;
+  transition: background .3s linear;
+  &:active {
+  }
+  &:hover {
+    background: darken($pink, 5);
+
+  }
+}
+
+
+
+@keyframes animate-show {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+
+
+
+#header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+  opacity: 0;
+  animation: animate-show 1s 1.5s ease forwards;
+}
+
+  #navigation {
+    max-width: 930px;
+    margin: 0 auto;
+    font-family: 'minion-pro-Regular', 'helvetica', serif;
+    display: flex;
+    justify-content: space-evenly;
+    background: rgba(255,255,255,0);
+    transition: background .2s linear;
+    font-size: .8rem;
+
+    &:hover {
+      background: rgba(255,255,255,1);
+    }
+  }
+
+    .navigation__link {
+      font-size: 1rem;
+      text-decoration: none;
+      padding: 1rem;
+      display: block;
+      text-transform: uppercase;
+
+      .active &,
+      &:hover {
+        text-decoration: underline;
+        color: #333;
+      }
+    }
+
+
+#content {
+  opacity: 0;
+  animation: animate-show 1s 1s ease forwards;
+}
+
+
+
+.stage {
+  height: calc( 100vh - 16px );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .title {
+    font-size: 4rem;
+
+    @media #{$breakpoint-sm} {
+      font-size: 4rem;
+    }
+  }
+  .text {
+    font-size: 1 rem;
+  }
+}
+
+.section {
+  padding: 0 2rem;
+  transition: opacity .3s linear;
+
+  @media #{$breakpoint-sm} {
+    padding: 0 5rem;
+  }
+
+  &.animating-out {
+    opacity: 0;
+
+      }
+}
+.outline {
+  width: 100%;
+  border: 5px solid $grey;
+  padding: 2rem 1rem;
+  max-width: 850px;
+
+  @media #{$breakpoint-sm} {
+    padding: 4rem 6rem 3rem;
+  }
+}
+
+.floral {
+  max-width: 160px;
+}
+
+
+.section--about {
+  position: relative;
+
+  .outline {
+    background: #fff;
+  }
+  &:after {
+    content: "";
+    opacity: 0;
+    background: url('/images/nova-scotia-map.png') top left no-repeat #fff;
+    background-size: 840px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+    transition: opacity .2s linear;
+  }
+  &.active {
+    &:after {
+      opacity: 1;
+    }
+  }
+  &.animating-out {
+    &:after {
+      opacity: 0;
+    }
+  }
+}
+
+
+.hide-if-submitted {display: none;}

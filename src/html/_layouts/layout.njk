@@ -1,0 +1,103 @@
+<html>
+  <head>
+    <title>{{__PAGE_TITLE__}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{__PAGE_DESCRIPTION__}}">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16x16.png">
+
+    <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="/css/global.css">
+    {% if __PER_PAGE_CSS__ %}
+    <link rel="stylesheet" href="/css/{{__PAGE_SLUG__}}.css"></script>
+    {% endif %}
+
+    <link rel="stylesheet" type="text/css" href="/css/libs/fullPage.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="/js/libs/jquery.fullPage.js"></script>
+
+  </head>
+  <body>
+    <header id="header" class="">
+      <ul id="navigation">
+        <li data-menuanchor="home" class="active">
+          <a class="navigation__link" href="#home">Home</a>
+        </li>
+      	<li data-menuanchor="rsvp">
+          <a class="navigation__link" href="#rsvp">RSVP</a>
+        </li>
+      	<li data-menuanchor="schedule">
+          <a class="navigation__link" href="#schedule">Schedule</a>
+        </li>
+      	<li data-menuanchor="about">
+          <a class="navigation__link" href="#about">About Nova Scotia</a>
+        </li>
+      	<li data-menuanchor="hotels">
+          <a class="navigation__link" href="#hotels">hotels</a>
+        </li>
+      </ul>
+    </header>
+
+    <div id="content">
+      {% block content %}{% endblock %}
+    </div>
+
+
+    {% if __PER_PAGE_JS__ %}
+    <script src="/js/{{__PAGE_SLUG__}}.js"></script>
+    {% endif %}
+
+    <script type="text/javascript">
+
+      $('#contact').submit(function(e) {
+        localStorage.setItem('rsvp-sent', true)
+      });
+
+      $('#reset-form').click(function(e) {
+        e.preventDefault();
+        localStorage.removeItem('rsvp-sent');
+        $('.hide-if-submitted').show();
+        $('.show-if-submitted').hide();
+      });
+
+      var animationUtil = function (index) {
+        console.log(index);
+        $($('.section')[index]).addClass('animating-out');
+
+        setTimeout(function () {
+          $($('.section')[index]).removeClass('animating-out');
+        }, 500);
+      }
+
+      $(document).ready(function() {
+        if (localStorage.getItem('rsvp-sent')) {
+          $('.hide-if-submitted').hide();
+          $('.show-if-submitted').show();
+        }
+
+        $('#fullpage').fullpage({
+          menu: true,
+          menu: '#navigation',
+          anchors: ['home', 'rsvp', 'schedule', 'about', 'hotels'],
+          verticalCentered: false,
+          slideIndex: 0,
+          scrollingSpeed: 900,
+          onLeave: function(index, nextIndex, direction){
+            animationUtil(index - 1)
+          }
+        });
+      });
+    </script>
+
+    <noscript>
+      <style>
+        *, * {
+          opacity: 1;
+        }
+      </style>
+    </noscript>
+
+  </body>
+</html>

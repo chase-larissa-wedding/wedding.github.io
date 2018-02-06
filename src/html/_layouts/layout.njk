@@ -56,7 +56,6 @@
       });
 
       $('#reset-form').click(function(e) {
-        console.log('reset');
         e.preventDefault();
         localStorage.removeItem('rsvp-sent');
         $('.hide-if-submitted').show();
@@ -64,15 +63,13 @@
       });
 
       var animationUtil = function (index) {
+        console.log(index);
         $($('.section')[index]).addClass('animating-out');
 
         setTimeout(function () {
           $($('.section')[index]).removeClass('animating-out');
         }, 500);
       }
-
-
-
 
       $(document).ready(function() {
         if (localStorage.getItem('rsvp-sent')) {

@@ -4,3 +4,4 @@ _site/images
 _site/js
 _site/*.html
 .grunt/*
+.DS_STORE

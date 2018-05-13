@@ -63,8 +63,12 @@ $black:     #2b2b2b !default;
 @import "./libs/fonts";
 
 
+
 $grey: #dbdbd6;
-$pink: #f8e5df;
+// $pink: #f8e5df;
+$pink: #ffded3;
+$dark-pink: #ffad91;
+
 
 .red {
   color: #F44336;
@@ -76,6 +80,7 @@ body {
   background: #fff;
   color: darken(#afb2aa, 10);
   width: 100%;
+  -webkit-font-smoothing: antialiased;
 }
 h1,h2,h3,h4,h5,h6 {
   font-weight: 400;
@@ -95,14 +100,30 @@ a {
 }
 
 
+@media (max-width: 48em) {
+  br {
+    content: '';
+    margin-right: 0rem; // mimic space?
+  }
+}
+
 .title {
   color: darken(#afb2aa, 20);
   font-family: 'bh-script-regular', cursive;
+  line-height: 3rem;
+
+  @media #{$breakpoint-sm} {
+    line-height: 4rem;
+  }
 }
 .text {
-  text-transform: uppercase;
-  letter-spacing: 0.2rem;
-  line-height: 1.7rem;
+  // line-height: 1.7rem;
+  color: darken(#afb2aa, 20);
+
+  @media #{$breakpoint-sm} {
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+  }
 }
 
 .text--first {
@@ -164,6 +185,9 @@ a {
   z-index: 2;
   opacity: 0;
   animation: animate-show 1s 1.5s ease forwards;
+
+
+  overflow: scroll;
 }
 
   #navigation {
@@ -172,12 +196,19 @@ a {
     font-family: 'minion-pro-Regular', 'helvetica', serif;
     display: flex;
     justify-content: space-evenly;
-    background: rgba(255,255,255,0);
+    background: rgba(255,255,255,1);
     transition: background .2s linear;
     font-size: .8rem;
+    width: 800px;
+    justify-content: center;
+    border-bottom: 5px solid #dbdbd6;
 
     &:hover {
       background: rgba(255,255,255,1);
+    }
+
+    @media #{$breakpoint-sm} {
+      border-bottom: 0;
     }
   }
 
@@ -204,26 +235,40 @@ a {
 
 
 .stage {
-  height: calc( 100vh - 16px );
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  height: calc( 100vh - 6rem);
+  top: 4.5rem;
+  position: relative;
 
   .title {
-    font-size: 4rem;
+    font-size: 2.8rem;
 
     @media #{$breakpoint-sm} {
       font-size: 4rem;
     }
   }
   .text {
-    font-size: 1 rem;
+    font-size: 1rem;
+  }
+  h2.text {
+    font-size: 1.5rem;
+
+    @media #{$breakpoint-sm} {
+      font-size: 2.2rem;
+    }
+  }
+  @media #{$breakpoint-sm} {
+    position: static;
+    top: 0;
+    height: calc( 100vh - 16px );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   }
 }
 
 .section {
-  padding: 0 2rem;
+  padding: 0 1rem;
   transition: opacity .3s linear;
 
   @media #{$breakpoint-sm} {
@@ -237,16 +282,32 @@ a {
 .outline {
   width: 100%;
   border: 5px solid $grey;
-  padding: 2rem 1rem;
+  padding: 2rem 1rem 1rem;
   max-width: 850px;
+  overflow: scroll;
 
   @media #{$breakpoint-sm} {
     padding: 4rem 6rem 3rem;
+    height: auto;
+    display: block;
+  }
+  @media (min-height: 800px) {
+    overflow: initial;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 }
 
 .floral {
+  display: none;
   max-width: 160px;
+
+  @media #{$breakpoint-sm} {
+    display: block;
+  }
 }
 
 
@@ -256,11 +317,16 @@ a {
   .outline {
     background: #fff;
   }
+
+  @media #{$breakpoint-sm} {
+    &:after {
+      content: "";
+    }
+  }
   &:after {
-    content: "";
     opacity: 0;
     background: url('/images/nova-scotia-map.png') top left no-repeat #fff;
-    background-size: 840px;
+    background-size: 300px;
     top: 0;
     left: 0;
     bottom: 0;
@@ -277,5 +343,26 @@ a {
   }
 }
 
+.section--details {
+  overflow: scroll;
+}
+
+.section--accomodations {
+  .list {
+    list-style-type: disc;
+    display: inline-block;
+  }
+}
+
+
+.scrollable {
+  // overflow-y: scroll;
+  // max-height: 97vh;
+
+  // @media #{$breakpoint-sm} {
+  //   overflow: initial;
+  //   max-height: auto;
+  // }
+}
 
 .show-if-submitted {display: none;}

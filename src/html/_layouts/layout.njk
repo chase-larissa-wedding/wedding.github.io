@@ -24,17 +24,20 @@
         <li data-menuanchor="home" class="active">
           <a class="navigation__link" href="#home">Home</a>
         </li>
-      	<li data-menuanchor="rsvp">
-          <a class="navigation__link" href="#rsvp">RSVP</a>
-        </li>
       	<li data-menuanchor="schedule">
           <a class="navigation__link" href="#schedule">Schedule</a>
         </li>
-      	<li data-menuanchor="about">
-          <a class="navigation__link" href="#about">About Nova Scotia</a>
+        <li data-menuanchor="rsvp">
+          <a class="navigation__link" href="#rsvp">RSVP</a>
         </li>
-      	<li data-menuanchor="hotels">
-          <a class="navigation__link" href="#hotels">hotels</a>
+      	<li data-menuanchor="about">
+          <a class="navigation__link" href="#about">About <span class="xs-hide">Nova Scotia</span></a>
+        </li>
+      	<li data-menuanchor="accommodations">
+          <a class="navigation__link" href="#accommodations">Accommodations</a>
+        </li>
+      	<li data-menuanchor="details">
+          <a class="navigation__link" href="#details">Big Day</a>
         </li>
       </ul>
     </header>
@@ -62,7 +65,6 @@
       });
 
       var animationUtil = function (index) {
-        console.log(index);
         $($('.section')[index]).addClass('animating-out');
 
         setTimeout(function () {
@@ -70,22 +72,42 @@
         }, 500);
       }
 
+
+
       $(document).ready(function() {
         if (localStorage.getItem('rsvp-sent')) {
           $('.hide-if-submitted').hide();
           $('.show-if-submitted').show();
         }
 
+
+
+        var animateNavigationScroll = function (index) {
+          console.log('nextIndex', index);
+
+          var outer = $('#header');
+          var inner = $('#navigation');
+          var innerItems = $('#navigation li');
+
+          var activeItem = $(innerItems[index]);
+          var activeItemPosition = $(innerItems[index]).position();
+        }
+
+
         $('#fullpage').fullpage({
           menu: true,
           menu: '#navigation',
-          anchors: ['home', 'rsvp', 'schedule', 'about', 'hotels'],
+          anchors: ['home', 'schedule', 'rsvp', 'about', 'accommodations', 'details'],
           verticalCentered: false,
           slideIndex: 0,
           scrollingSpeed: 900,
+          normalScrollElements: '.scrollable',
+          // normalScrollElementTouchThreshold: '10',
+          bigSectionsDestination: 'top',
           onLeave: function(index, nextIndex, direction){
             animationUtil(index - 1)
-          }
+            animateNavigationScroll(nextIndex);
+          },
         });
       });
     </script>

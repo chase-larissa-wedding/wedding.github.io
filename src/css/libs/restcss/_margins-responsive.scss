@@ -15,12 +15,6 @@ $margin-unit: 6;
     .sm-m#{$i}  {margin: #{$i}em}
   }
 
-  // Margin-tops
-  .sm-mt0       {margin-top: 0}
-  .sm-mtp5      {margin-top: .5em}
-  @for $i from $margin-step-start through $margin-step-limit {
-    .sm-mt#{$i} {margin-top: #{$i}em}
-  }
 
   // Margin-rights
   .sm-mr0       {margin-right: 0}
@@ -68,18 +62,11 @@ $margin-unit: 6;
     .md-m#{$i}  {margin: #{$i}em}
   }
 
-  // Margins
-  .md-m0        {margin: 0}
-  .md-mp5       {margin: .5em}
-  @for $i from $margin-step-start through $margin-step-limit {
-    .md-m#{$i}  {margin: #{$i}em}
-  }
-
   // Margin-tops
   .md-mt0       {margin-top: 0}
   .md-mtp5      {margin-top: .5em}
   @for $i from $margin-step-start through $margin-step-limit {
-    .md-mt#{$i} {margin: #{$i}em}
+    .md-mt#{$i} {margin-top: #{$i}em}
   }
 
   // Margin-rights
@@ -128,18 +115,12 @@ $margin-unit: 6;
     .lg-m#{$i}  {margin: #{$i}em}
   }
 
-  // Margins
-  .lg-m0        {margin: 0}
-  .lg-mp5       {margin: .5em}
-  @for $i from $margin-step-start through $margin-step-limit {
-    .lg-m#{$i}  {margin: #{$i}em}
-  }
 
   // Margin-tops
   .lg-mt0       {margin-top: 0}
   .lg-mtp5      {margin-top: .5em}
   @for $i from $margin-step-start through $margin-step-limit {
-    .lg-mt#{$i} {margin: #{$i}em}
+    .lg-mt#{$i} {margin-top: #{$i}em}
   }
 
   // Margin-rights

@@ -93,22 +93,26 @@
           var activeItemPosition = $(innerItems[index]).position();
         }
 
+        const mq = window.matchMedia( "(min-width: 500px)" );
+        if (mq.matches) {
+          $('#fullpage').fullpage({
+            menu: true,
+            menu: '#navigation',
+            anchors: ['home', 'schedule', 'rsvp', 'about', 'accommodations', 'details'],
+            verticalCentered: false,
+            slideIndex: 0,
+            scrollingSpeed: 900,
+            normalScrollElements: '.scrollable',
+            // normalScrollElementTouchThreshold: '10',
+            bigSectionsDestination: 'top',
+            onLeave: function(index, nextIndex, direction){
+              //animationUtil(index - 1)
+              //animateNavigationScroll(nextIndex);
+            },
+          });
+        }
 
-        $('#fullpage').fullpage({
-          menu: true,
-          menu: '#navigation',
-          anchors: ['home', 'schedule', 'rsvp', 'about', 'accommodations', 'details'],
-          verticalCentered: false,
-          slideIndex: 0,
-          scrollingSpeed: 900,
-          normalScrollElements: '.scrollable',
-          // normalScrollElementTouchThreshold: '10',
-          bigSectionsDestination: 'top',
-          onLeave: function(index, nextIndex, direction){
-            animationUtil(index - 1)
-            animateNavigationScroll(nextIndex);
-          },
-        });
+        
       });
     </script>
 

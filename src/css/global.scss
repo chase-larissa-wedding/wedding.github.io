@@ -149,19 +149,20 @@ a {
 
 
 .btn {
-  line-height: 2rem;
   text-decoration: none;
-  letter-spacing: 0.2rem;
   text-transform: uppercase;
   background: $pink;
   border: 3px solid #fff;
   color: $gray;
   transition: background .3s linear;
-  &:active {
-  }
   &:hover {
     background: darken($pink, 5);
+  }
 
+  @media #{$breakpoint-sm} {
+    line-height: 2rem;
+    text-decoration: none;
+    letter-spacing: 0.2rem;
   }
 }
 
@@ -182,12 +183,13 @@ a {
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 2;
-  opacity: 0;
-  animation: animate-show 1s 1.5s ease forwards;
+  z-index: 5;
+  // opacity: 0;
+  // animation: animate-show 1s 1.5s ease forwards;
 
-
-  overflow: scroll;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
   #navigation {
@@ -230,14 +232,24 @@ a {
 #content {
   opacity: 0;
   animation: animate-show 1s 1s ease forwards;
+
+  position: absolute;
+  top: 53px;
+  height: calc(100vh - 106px);
+
+  @media #{$breakpoint-sm} {
+    position: static;
+    top:0;
+    height: auto;
+  }
 }
 
 
 
 .stage {
-  height: calc( 100vh - 6rem);
-  top: 4.5rem;
-  position: relative;
+  // height: calc( 100vh - 6rem);
+  // top: 1rem;
+  // position: relative;
 
   .title {
     font-size: 2.8rem;
@@ -269,9 +281,11 @@ a {
 
 .section {
   padding: 0 1rem;
+  margin: 1rem 0;
   transition: opacity .3s linear;
 
   @media #{$breakpoint-sm} {
+    margin: 0;
     padding: 0 5rem;
   }
 
@@ -285,6 +299,7 @@ a {
   padding: 2rem 1rem 1rem;
   max-width: 850px;
   overflow: scroll;
+  -webkit-overflow-scrolling: touch;
 
   @media #{$breakpoint-sm} {
     padding: 4rem 6rem 3rem;
@@ -306,7 +321,7 @@ a {
   max-width: 160px;
 
   @media #{$breakpoint-sm} {
-    display: block;
+    display: inline-block;
   }
 }
 

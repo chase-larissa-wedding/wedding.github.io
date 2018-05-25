@@ -66,12 +66,15 @@ $black:     #2b2b2b !default;
 
 $grey: #dbdbd6;
 // $pink: #f8e5df;
-$pink: #ffded3;
+$pink: #fcd3da;
 $dark-pink: #ffad91;
 
 
 .red {
   color: #F44336;
+}
+.fw-bold,strong, h4 {
+  font-weight: 900;
 }
 
 
@@ -102,7 +105,7 @@ a {
 
 @media (max-width: 48em) {
   br {
-    content: '';
+    content: ' ';
     margin-right: 0rem; // mimic space?
   }
 }
@@ -183,17 +186,21 @@ a {
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 5;
-  // opacity: 0;
-  // animation: animate-show 1s 1.5s ease forwards;
-
+  background: rgba(255,255,255,1);
+  z-index: 3;
   overflow-y: hidden;
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
+
+  @media #{$breakpoint-sm} {
+    overflow: auto;
+    -webkit-overflow-scrolling: auto;
+  
+  }
 }
 
   #navigation {
-    max-width: 930px;
+    max-width: 1000px;
     margin: 0 auto;
     font-family: 'minion-pro-Regular', 'helvetica', serif;
     display: flex;
@@ -215,13 +222,13 @@ a {
   }
 
     .navigation__link {
-      font-size: 1rem;
+      font-size: .8rem;
       text-decoration: none;
       padding: 1rem;
       display: block;
       text-transform: uppercase;
 
-      .active &,
+      & .active,
       &:hover {
         text-decoration: underline;
         color: #333;
@@ -232,16 +239,6 @@ a {
 #content {
   opacity: 0;
   animation: animate-show 1s 1s ease forwards;
-
-  position: absolute;
-  top: 53px;
-  height: calc(100vh - 106px);
-
-  @media #{$breakpoint-sm} {
-    position: static;
-    top:0;
-    height: auto;
-  }
 }
 
 
@@ -258,17 +255,25 @@ a {
     font-size: 2.8rem;
 
     @media #{$breakpoint-sm} {
-      font-size: 4rem;
+      font-size: 3.5rem;
     }
   }
   .text {
     font-size: 1rem;
   }
-  h2.text {
+  
+  .section__title {
     font-size: 1.5rem;
 
     @media #{$breakpoint-sm} {
       font-size: 2.2rem;
+    }
+  }
+  .section__title--sub {
+    font-size: 1.4rem;
+
+    @media #{$breakpoint-sm} {
+      font-size: 2rem;
     }
   }
 
@@ -293,16 +298,15 @@ a {
   border: 5px solid $grey;
   padding: 2rem 1rem 1rem;
   max-width: 850px;
-  overflow: scroll;
-  -webkit-overflow-scrolling: touch;
+  margin: 0 auto;
 
   @media #{$breakpoint-sm} {
     height: auto;
     display: block;
   }
   @media (min-height: 800px) {
-    overflow: initial;
-    height: 100%;
+    // overflow: initial;
+    // height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -320,6 +324,17 @@ a {
 }
 
 
+.home-image {
+  background-image: url(/images/chase-and-larissa-photo.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+}
+
 .section--about {
   position: relative;
 
@@ -327,51 +342,84 @@ a {
     background: #fff;
   }
 
-  @media #{$breakpoint-sm} {
-    &:after {
-      content: "";
-    }
-  }
-  &:after {
-    opacity: 0;
-    background: url('/images/nova-scotia-map.png') top left no-repeat #fff;
-    background-size: 300px;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    position: absolute;
-    z-index: -1;
-    transition: opacity .3s linear;
-    animation: animate-hide .5s 1s ease forwards;
-  }
-  &.active {
-    &:after {
-      animation: animate-show .5s 1s ease forwards;
-    }
-  }
 }
 
-.section--details {
-  overflow: scroll;
-}
 
 .section--accomodations {
   .list {
     list-style-type: disc;
     display: inline-block;
+
+    li {
+      margin-bottom: 1rem;
+    }
   }
 }
 
 
-.scrollable {
-  // overflow-y: scroll;
-  // max-height: 97vh;
+// super long....
+.section--guests {
+  padding-top: 5rem;
 
-  // @media #{$breakpoint-sm} {
-  //   overflow: initial;
-  //   max-height: auto;
-  // }
+  .stage {
+    display: block;
+    height: auto;
+  }
+  .guest-item {
+    margin-bottom: 2rem;
+
+    h4 {
+      margin-bottom: 0.8rem;
+      color: #7d8175;
+    }
+  }
+
+  @media #{$breakpoint-sm} {
+    padding-bottom: 5rem;
+  }
 }
 
 .show-if-submitted {display: none;}
+
+
+.modal {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0,0,0, .60);
+  align-items: center;
+  justify-content: center;
+  display: none;
+  opacity: 0;
+  transition: .2s linear opacity;
+
+  &.active {
+    display: flex;
+    opacity: 1;
+  }
+}
+
+
+.modal__content {
+  background: #fff;
+  padding: 2rem;
+  max-width: 650px;
+  max-height: 70%;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
+
+  br {
+    content: initial;
+    margin-right: auto;
+  }
+  @media #{$breakpoint-sm} {
+    padding: 4rem;
+    overflow: auto;
+    max-height: auto;
+    -webkit-overflow-scrolling: auto;
+  }
+}

@@ -28,13 +28,16 @@
           <a class="navigation__link" href="#rsvp">RSVP</a>
         </li>
       	<li>
-          <a class="navigation__link" href="#about">About <span class="xs-hide">Nova Scotia</span></a>
+          <a class="navigation__link" href="#visit">Visit <span class="xs-hide">Nova Scotia</span></a>
         </li>
       	<li>
           <a class="navigation__link" href="#accommodations">Accommodations</a>
         </li>
       	<li>
-          <a class="navigation__link" href="#details">Big Day</a>
+          <a class="navigation__link" href="#schedule">Schedule</a>
+        </li>
+      	<li>
+          <a class="navigation__link" href="#guests">Guest Information</a>
         </li>
       </ul>
     </header>
@@ -69,11 +72,79 @@
         }, 500);
       }
 
+
+
       $(document).ready(function() {
         if (localStorage.getItem('rsvp-sent')) {
           $('.hide-if-submitted').hide();
           $('.show-if-submitted').show();
         }
+
+
+        var $container = $('#header')
+
+        $(window).on('scroll', function (e){
+          var winTop = $(this).scrollTop();
+          var $divs = $('.section');
+
+          var top = $.grep($divs, function(item) {
+            return $(item).position().top <= winTop + 100;
+          });
+          
+          var activeId = top.slice(-1).pop().id;
+
+          $('.navigation__link').removeClass('active');
+          $('.navigation__link').each(function( index, element ) {
+            if($(element).attr("href") == '#' + activeId){
+              $(element).addClass('active');
+            }
+          });
+        });    
+
+
+        // Nav menu scroll
+        $(".navigation__link").click(function (){
+          var targetId = this.href.split("#")[1];
+
+          $('html, body').animate({
+              scrollTop: $('#' + targetId).offset().top - 50
+          }, 300);
+        })
+
+        // Modals
+
+        // Modal Transportation
+        $('#js-trigger-modal-trans').click(function(e) {
+          e.preventDefault();
+
+          $('#modal--transport').toggleClass('active');
+        });
+
+
+        $('#js-trigger-modal-children').click(function(e) {
+          e.preventDefault();
+
+          $('#modal--children').toggleClass('active');
+        });
+
+
+        // General
+        $('#modal--transport').click(function(e) {
+          $(this).removeClass('active');
+        });
+        // General
+        $('#modal--children').click(function(e) {
+          $(this).removeClass('active');
+        });
+
+        $('.modal__content').click(function(e) {
+          e.stopPropagation()
+        });
+
+        $('#header').click(function(e) {
+          $('.modal').removeClass('active');
+        });
+
       });
     </script>
 

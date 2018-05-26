@@ -41,8 +41,9 @@
     <div id="content">
         <div class="section" id="home">
             <div class="stage t-center">
-                <div class="outline relative">
+                <div class="outline relative" style="display:block !important;">
                     <div class="home-image col xs-hide sm-col-5"></div>
+
                     <div class="clearfix">
                         <div class="col col-12 sm-col-7 right">
                             <div class="mb2">
@@ -332,6 +333,12 @@
             </div>
         </div>
     </div>
+
+    <style>
+        #home .outline {
+
+        }
+    </style>
     <script type="text/javascript">
         $('#contact').submit(function(e) {
             localStorage.setItem('rsvp-sent', true)
